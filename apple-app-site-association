@@ -1,0 +1,11 @@
+{
+    "applinks":{
+        "apps":[],
+        "details":[
+            {
+                "appID":"PA23855DU8.com.Uthing.orderuthing",
+                "paths":[ "*" ]
+            }
+        ]
+    }
+}
