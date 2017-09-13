@@ -15,7 +15,7 @@ function getWxToken(){
 		if ($tokenInfo['lost_time']>time()) {
 			writeLog('cached token info is '.var_export($tokenInfo, true));
 			# code...
-			return $tokenInfo['access_token']
+			return $tokenInfo['access_token'] ;
 		}
 	}
 
