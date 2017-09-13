@@ -1,5 +1,5 @@
 <?php
-incldue 'tools.php' ;
+include 'tools.php' ;
 
 
 $accessToken = getWxToken();
