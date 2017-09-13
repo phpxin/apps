@@ -1,10 +1,11 @@
 <?php
+include 'tools.php' ;
 
 $check['token'] = "a1Hy2s3S456*(Db)ac" ;
 $check['timestamp'] = $_GET['timestamp'] ;
 $check['nonce'] = $_GET['nonce'] ;
 
-file_put_contents('./logs/a.log', var_export($_GET, true).PHP_EOL) ;
+writeLog($check);
 
 $signature = $_GET['signature'] ;
 $echostr = $_GET['echostr'] ;
