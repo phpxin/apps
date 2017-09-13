@@ -2,7 +2,26 @@
 define('APP_ID', 'wx43bb66a03f3f756a');
 define('APP_SEC', '7c3d2287a74ea05ad9882ed6d641aa96') ;
 
-
+function postRequest($url, $fields){
+        $header = array(
+            "Content-Type:application/json",
+            'User-Agent: Mozilla/4.0 (compatible; MSIE .0; Windows NT 6.1; Trident/4.0; SLCC2;)');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
+        $result = curl_exec ($ch);
+        curl_close($ch);
+        if ($result == NULL) {
+            return 0;
+        }
+        return $result;
+}
 
 function getWxToken(){
 
