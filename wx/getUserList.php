@@ -36,7 +36,7 @@ $reqUserList['user_list'] = [] ;
 foreach ($openidList['data']['openid'] as $value) {
 	# code...
 	$reqUserList['user_list'][] = [
-		'openid' => $value['openid'] ,
+		'openid' => $value ,
 		'lang' => 'zh_CN'
 	];
 }
