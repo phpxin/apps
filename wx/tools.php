@@ -2,6 +2,15 @@
 define('APP_ID', 'wx43bb66a03f3f756a');
 define('APP_SEC', '7c3d2287a74ea05ad9882ed6d641aa96') ;
 
+function json_success($data , $exit = true){
+	header("content-type: application/json") ;
+	echo json_encode(['code'=>200, 'data'=>$data]) ;
+	if ($exit) {
+		# code...
+		exit();
+	}
+}
+
 function postRequest($url, $fields){
         $header = array(
             "Content-Type:application/json",

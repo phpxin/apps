@@ -27,11 +27,6 @@ if (isset($openidList['errcode']) && $openidList['errcode']) {
 	exit();
 }
 
-
-
-//{"total":1,"count":1,"data":{"openid":["oleSgxNUYBCAm2i8n6Jj-eLNt4mY"]},"next_openid":"oleSgxNUYBCAm2i8n6Jj-eLNt4mY"}
-
-
 $reqUserList['user_list'] = [] ;
 foreach ($openidList['data']['openid'] as $value) {
 	# code...
@@ -58,6 +53,13 @@ if (isset($response['errcode']) && $response['errcode']) {
 	exit();
 }
 
+$list = [] ;
+foreach ($response['user_info_list'] as $key => $value) {
+	$list[] = [
+		'openid' => $value['openid'] ,
+		'nickname' => $value['nickname'] ,
+		'headimgurl' => $value['headimgurl'] ,
+	] ;
+}
 
-
-var_dump($response) ;
+json_success($list) ;
