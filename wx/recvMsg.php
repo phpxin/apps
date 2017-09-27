@@ -19,6 +19,8 @@ foreach ($check as $key => $value) {
 	$my_s .= $value ;
 }
 
+$requestdata = file_get_contents("php://input");
+writeLog($requestdata);
 
 $my_s = sha1($my_s);
 
