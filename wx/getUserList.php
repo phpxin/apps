@@ -2,6 +2,12 @@
 include 'tools.php' ;
 
 
+$existOpenids = [] ;
+if (isset($_POST['openids']) && !empty($_POST['openids'])) {
+	$existOpenids = explode(',', trim($_POST['openids'], ' ,')) ;
+}
+
+
 $accessToken = getWxToken();
 if (!$accessToken) {
 	# code...
@@ -29,7 +35,12 @@ if (isset($openidList['errcode']) && $openidList['errcode']) {
 
 $reqUserList['user_list'] = [] ;
 foreach ($openidList['data']['openid'] as $value) {
-	# code...
+	
+	if (in_array($value, $existOpenids)) {
+		//openid 客户端已存在，忽略之
+		continue ;
+	}
+
 	$reqUserList['user_list'][] = [
 		'openid' => $value ,
 		'lang' => 'zh_CN'
