@@ -46,6 +46,11 @@ foreach ($openidList['data']['openid'] as $value) {
 		'lang' => 'zh_CN'
 	];
 }
+
+if (empty($reqUserList['user_list'])){
+	json_success([]) ;//  没有需要同步的用户数据，返回空数组
+}
+
 $reqUserList = json_encode($reqUserList) ;
 writeLog('request user list is '.$reqUserList);
 $url = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token='.$accessToken ;
