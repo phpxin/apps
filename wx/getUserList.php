@@ -1,12 +1,12 @@
 <?php
 include 'tools.php' ;
 
-
+writeLog('post '.var_export($_POST, true));
 $existOpenids = [] ;
 if (isset($_POST['openids']) && !empty($_POST['openids'])) {
 	$existOpenids = explode(',', trim($_POST['openids'], ' ,')) ;
 }
-
+writeLog('exist openids '.var_export($existOpenids, true));
 
 $accessToken = getWxToken();
 if (!$accessToken) {
