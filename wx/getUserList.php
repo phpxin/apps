@@ -1,5 +1,6 @@
 <?php
 include 'tools.php' ;
+include '../dboper.class.php' ;
 
 writeLog('post '.var_export($_POST, true));
 $existOpenids = [] ;
