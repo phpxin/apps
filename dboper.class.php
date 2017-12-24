@@ -49,6 +49,6 @@ class dboper{
         if(!$statement->execute($params)){
             return false;
         }
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
