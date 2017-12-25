@@ -49,7 +49,7 @@ foreach ($openidList['data']['openid'] as $value) {
 }
 
 if (empty($reqUserList['user_list'])){
-	json_success([]) ;//  没有需要同步的用户数据，返回空数组
+	json_success(['list'=>[], 'synctime'=>time()]) ;//  没有需要同步的用户数据，返回空数组
 }
 
 $reqUserList = json_encode($reqUserList) ;
@@ -79,4 +79,6 @@ foreach ($response['user_info_list'] as $key => $value) {
 	] ;
 }
 
-json_success($list) ;
+$ret['list'] = $list ;
+$ret['synctime'] => time();
+json_success($ret) ;

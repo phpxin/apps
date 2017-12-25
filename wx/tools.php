@@ -11,6 +11,12 @@ function json_success($data , $exit = true){
 	}
 }
 
+function json_error($errmsg, $errcode=500){
+	header("content-type: application/json") ;
+	echo json_encode(['code'=>$errcode, 'msg'=>$errmsg]) ;
+	exit();
+}
+
 function postRequest($url, $fields){
         $header = array(
             "Content-Type:application/json",
