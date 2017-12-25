@@ -1,6 +1,6 @@
 <?php
 include_once 'tools.php' ;
-include_once 'dboper.class.php' ;
+include_once '../dboper.class.php' ;
 
 class recvMsg{
 
