@@ -45,11 +45,14 @@ if (isset($response['errcode']) && $response['errcode']) {
 
 $list = [] ;
 foreach ($response['user_info_list'] as $key => $value) {
-	$list[] = [
-		'openid' => $value['openid'] ,
-		'nickname' => $value['nickname'] ,
-		'headimgurl' => $value['headimgurl'] ,
-	] ;
+	if ($value['subscribe']) {
+		$list[] = [
+			'openid' => $value['openid'] ,
+			'nickname' => $value['nickname'] ,
+			'headimgurl' => $value['headimgurl'] ,
+		] ;
+	}
+	
 }
 
 $ret['list'] = $list ;
