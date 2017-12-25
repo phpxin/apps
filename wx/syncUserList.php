@@ -53,5 +53,5 @@ foreach ($response['user_info_list'] as $key => $value) {
 }
 
 $ret['list'] = $list ;
-$ret['synctime'] => time();
+$ret['synctime'] = time();
 json_success($ret) ;
