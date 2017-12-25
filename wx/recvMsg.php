@@ -25,7 +25,13 @@ class recvMsg{
 			//解析消息
 			if ($this->requestParams['Event']=='subscribe') {
 				$openid = $this->requestParams['FromUserName'] ;
-				$db->add("insert into user(`openid`,`created_at`) values(:openid, :created_at)", [':openid'=>$openid,':created_at'=>time()]);
+
+				$info = $db->select("select id from user where `openid`=:openid limit 1", [':openid'=>$openid]);
+				if (!$info) {
+					$db->add("insert into user(`openid`,`created_at`) values(:openid, :created_at)", [':openid'=>$openid,':created_at'=>time()]);
+				}
+
+				
 
 			}
 		}catch(Exception $e){
