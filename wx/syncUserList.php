@@ -7,6 +7,10 @@ writeLog('get '.var_export($_REQUEST, true));
 
 
 $synctime = $_REQUEST['synctime'] ;
+if ($synctime<=0) {
+	writeLog("synctime error ".json_encode($_REQUEST));
+	json_error("synctime {$synctime} error");
+}
 
 $accessToken = getWxToken();
 if (!$accessToken) {
