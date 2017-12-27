@@ -13,7 +13,9 @@ $accessToken = getWxToken();
 if (!$accessToken) {
 	# code...
 
-	echo 'failed' ;
+	//echo 'failed' ;
+	writeLog('getUserList : failed to get token');
+	json_error('token err') ;
 	exit();
 }
 
@@ -23,14 +25,18 @@ writeLog('open id list '.$openidList);
 
 if (empty($openidList)) {
 	# code...
-	echo 'failed:user list get';
+	//echo 'failed:user list get';
+	writeLog('getUserList : failed to get user list ');
+	json_error('failed:user list get') ;
 	exit();
 }
 
 $openidList = json_decode($openidList, true) ;
 if (isset($openidList['errcode']) && $openidList['errcode']) {
 	# code...
-	echo 'failed:user list get , errcode '. $openidList['errcode'] ;
+	//echo 'failed:user list get , errcode '. $openidList['errcode'] ;
+	writeLog('getUserList : failed to get user list ');
+	json_error('failed:user list get') ;
 	exit();
 }
 
@@ -58,7 +64,9 @@ $url = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token='.$acc
 $response = postRequest($url, $reqUserList);
 if (!$response) {
 	# code...
-	echo 'failed: user info list get result is null' ;
+	//echo 'failed: user info list get result is null' ;
+	writeLog('getUserList : user info list get result is null');
+	json_error('failed: user info list get result is null') ;
 	exit();
 }
 
@@ -66,7 +74,9 @@ if (!$response) {
 $response = json_decode($response, true) ;
 if (isset($response['errcode']) && $response['errcode']) {
 	# code...
-	echo 'failed: user info list get , errcode '. $response['errcode'] ;
+	//echo 'failed: user info list get , errcode '. $response['errcode'] ;
+	writeLog('getUserList : user info list get , errcode '. $response['errcode']);
+	json_error('failed: user info list get , errcode '. $response['errcode']) ;
 	exit();
 }
 
