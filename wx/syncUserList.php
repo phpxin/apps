@@ -12,11 +12,6 @@ if ($synctime<=0) {
 	json_error("synctime {$synctime} error");
 }
 
-$accessToken = getWxToken();
-if (!$accessToken) {
-	json_error('token err') ;
-}
-
 $db = dboper::inst('bigscreen_server') ;
 $openidList = $db->select("select openid from user where created_at>:synctime and is_sync=0", [":synctime"=>$synctime]);
 if (!$openidList) {
@@ -34,6 +29,11 @@ foreach ($openidList as $value) {
 
 $reqUserList = json_encode($reqUserList) ;
 writeLog('request user list is '.$reqUserList);
+
+$accessToken = getWxToken();
+if (!$accessToken) {
+	json_error('token err') ;
+}
 $url = 'https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token='.$accessToken ;
 $response = postRequest($url, $reqUserList);
 writeLog("syncUserList : user info get response ".var_export($response, true)) ;
