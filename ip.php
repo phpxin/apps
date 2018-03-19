@@ -2,7 +2,15 @@
 $realIp = realIp();
 $ip = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=".$realIp);
 $ip = json_decode($ip,true);
-var_dump($ip);
+if ($ip && $ip['code']==0) {
+	if($ip['data']['country_id']=='CN')
+		echo 'CN';
+	else
+		echo 'other' ;
+	exit();
+}else{
+	echo 'unknown' ;
+}
 
 function realIp() {
 	static $realip = NULL;
