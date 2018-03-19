@@ -1,9 +1,8 @@
 <?php
 $realIp = realIp();
-var_dump($realIp) ;
 $ip = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=".$realIp);
 $ip = json_decode($ip,true);
-
+var_dump($ip);
 
 function realIp() {
 	static $realip = NULL;
