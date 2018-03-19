@@ -6,3 +6,4 @@ weixin.settings
 .idea
 config.php
 logs/*
+dokuwiki
